@@ -1,0 +1,35 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a routerLink="/" class="logo">
+          <span class="logo__mark">T</span>
+          <span class="logo__text">ThiranLabs</span>
+        </a>
+        <p class="footer__tagline">
+          Professional web design and development for businesses that want to stand out online.
+        </p>
+      </div>
+
+      <div class="footer__links">
+        <h4>Navigate</h4>
+        <a routerLink="/">Home</a>
+        <a routerLink="/about">About</a>
+        <a routerLink="/services">Services</a>
+        <a routerLink="/contact">Contact</a>
+      </div>
+
+      <div class="footer__contact">
+        <h4>Get in Touch</h4>
+        <a [href]="'mailto:' + contact().email">{{ contact().email }}</a>
+        <a [href]="'tel:' + contact().phone">{{ contact().phone }}</a>
+        <span>{{ contact().location }}</span>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ year }} ThiranLabs. All rights reserved.</p>
+      <a routerLink="/admin/login" class="footer__admin">Admin</a>
+    </div>
+  </div>
+</footer>

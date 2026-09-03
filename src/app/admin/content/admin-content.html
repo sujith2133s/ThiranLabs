@@ -1,0 +1,131 @@
+<div class="admin-page">
+  <div class="admin-page__header">
+    <h1>Content Management</h1>
+    <p>Edit headlines, copy, and contact information across your website.</p>
+  </div>
+
+  @if (saved()) {
+    <div class="save-toast">Changes saved successfully!</div>
+  }
+
+  <div class="content-tabs">
+    <button type="button" [class.active]="activeTab() === 'hero'" (click)="setTab('hero')">Hero</button>
+    <button type="button" [class.active]="activeTab() === 'about'" (click)="setTab('about')">About</button>
+    <button type="button" [class.active]="activeTab() === 'services'" (click)="setTab('services')">Services</button>
+    <button type="button" [class.active]="activeTab() === 'contact'" (click)="setTab('contact')">Contact</button>
+  </div>
+
+  @if (activeTab() === 'hero') {
+    <form class="edit-form" [formGroup]="heroForm" (ngSubmit)="saveHero()">
+      <div class="form-group">
+        <label>Headline</label>
+        <input type="text" formControlName="headline" />
+      </div>
+      <div class="form-group">
+        <label>Subheadline</label>
+        <textarea formControlName="subheadline" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>CTA Button Text</label>
+        <input type="text" formControlName="ctaText" />
+      </div>
+      <button type="submit" class="btn btn--primary">Save Hero Content</button>
+    </form>
+  }
+
+  @if (activeTab() === 'about') {
+    <form class="edit-form" [formGroup]="aboutForm" (ngSubmit)="saveAbout()">
+      <div class="form-group">
+        <label>Headline</label>
+        <input type="text" formControlName="headline" />
+      </div>
+      <div class="form-group">
+        <label>Introduction</label>
+        <textarea formControlName="intro" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Mission Statement</label>
+        <textarea formControlName="mission" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Save About Content</button>
+    </form>
+  }
+
+  @if (activeTab() === 'services') {
+    <form class="edit-form" [formGroup]="servicesForm" (ngSubmit)="saveServices()">
+      <div class="form-group">
+        <label>Page Headline</label>
+        <input type="text" formControlName="headline" />
+      </div>
+      <div class="form-group">
+        <label>Page Introduction</label>
+        <textarea formControlName="intro" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Save Services Section</button>
+    </form>
+  }
+
+  @if (activeTab() === 'contact') {
+    <form class="edit-form" [formGroup]="contactForm" (ngSubmit)="saveContact()">
+      <div class="form-group">
+        <label>Headline</label>
+        <input type="text" formControlName="headline" />
+      </div>
+      <div class="form-group">
+        <label>Introduction</label>
+        <textarea formControlName="intro" rows="3"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" formControlName="email" />
+        </div>
+        <div class="form-group">
+          <label>Phone (Enquiry)</label>
+          <input type="tel" formControlName="phone" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone (WhatsApp)</label>
+          <input type="tel" formControlName="whatsapp" />
+        </div>
+        <div class="form-group"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" formControlName="location" />
+        </div>
+        <div class="form-group">
+          <label>Business Hours</label>
+          <input type="text" formControlName="hours" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn--primary">Save Contact Info</button>
+    </form>
+  }
+
+  <div class="admin-section">
+    <h2>Change Admin Password</h2>
+    <form class="edit-form edit-form--inline" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Current Password</label>
+          <input type="password" formControlName="current" />
+        </div>
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" formControlName="newPassword" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn--outline">Update Password</button>
+    </form>
+  </div>
+
+  <div class="admin-section admin-section--danger">
+    <h2>Reset Content</h2>
+    <p>Restore all website content to default values.</p>
+    <button type="button" class="btn btn--danger" (click)="resetContent()">Reset to Defaults</button>
+  </div>
+</div>

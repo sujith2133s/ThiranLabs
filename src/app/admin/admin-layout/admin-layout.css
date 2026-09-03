@@ -1,0 +1,142 @@
+.admin {
+  display: flex;
+  min-height: 100dvh;
+  background: var(--color-bg);
+}
+
+.admin__sidebar {
+  width: 260px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+}
+
+.admin__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+}
+
+.admin__brand strong {
+  display: block;
+  font-size: 0.9375rem;
+}
+
+.admin__brand span {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.admin__nav {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.admin__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.admin__nav-link:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.admin__nav-link--active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.admin__nav-link .badge {
+  margin-left: auto;
+  background: var(--color-error);
+  color: white;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.admin__sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin__view-site {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.admin__logout {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.admin__logout:hover {
+  background: var(--color-bg);
+}
+
+.admin__main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 2rem;
+  min-height: 100dvh;
+}
+
+@media (max-width: 768px) {
+  .admin__sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+
+  .admin {
+    flex-direction: column;
+  }
+
+  .admin__main {
+    margin-left: 0;
+  }
+}

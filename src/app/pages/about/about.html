@@ -1,0 +1,47 @@
+<section class="page-hero">
+  <app-scene-3d variant="subtle" />
+  <div class="container">
+    <h1 appScrollReveal>{{ about().headline }}</h1>
+    <p class="page-hero__intro" [delay]="100" appScrollReveal>{{ about().intro }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-grid">
+    <div class="about-content" appScrollReveal>
+      <h2>Our Mission</h2>
+      <p>{{ about().mission }}</p>
+    </div>
+    <div class="stats-grid">
+      @for (stat of about().stats; track stat.label; let i = $index) {
+        <div class="stat card-3d" appTilt3d [delay]="i * 80" appScrollReveal>
+          <span class="stat__value">{{ stat.value }}</span>
+          <span class="stat__label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header" appScrollReveal>
+      <h2>Our Values</h2>
+      <p>The principles that guide every project we take on.</p>
+    </div>
+    <div class="values-grid">
+      @for (value of about().values; track value.title; let i = $index) {
+        <div class="value-card card-3d" appTilt3d [delay]="i * 120" appScrollReveal>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-banner
+  headline="Let's Build Something Great Together"
+  subtext="Whether you're starting fresh or ready for a redesign, we'd love to hear from you."
+  buttonText="Request a Quote"
+/>

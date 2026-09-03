@@ -1,0 +1,92 @@
+<div class="admin-page">
+  <div class="admin-page__header">
+    <h1>Lead Management</h1>
+    <p>View and respond to inquiries captured from your website forms.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button type="button" [class.active]="filterStatus() === 'all'" (click)="setFilter('all')">All</button>
+    <button type="button" [class.active]="filterStatus() === 'new'" (click)="setFilter('new')">New</button>
+    <button type="button" [class.active]="filterStatus() === 'contacted'" (click)="setFilter('contacted')">Contacted</button>
+    <button type="button" [class.active]="filterStatus() === 'closed'" (click)="setFilter('closed')">Closed</button>
+  </div>
+
+  <div class="leads-layout">
+    <div class="leads-table-wrap">
+      @if (filteredLeads().length === 0) {
+        <div class="panel__empty">No leads match this filter.</div>
+      } @else {
+        <table class="leads-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Source</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (lead of filteredLeads(); track lead.id) {
+              <tr
+                [class.selected]="selectedLead()?.id === lead.id"
+                (click)="selectLead(lead)"
+              >
+                <td><strong>{{ lead.name }}</strong></td>
+                <td>{{ lead.email }}</td>
+                <td>{{ lead.source }}</td>
+                <td><span class="status-badge status-badge--{{ lead.status }}">{{ lead.status }}</span></td>
+                <td>{{ formatDate(lead.createdAt) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    </div>
+
+    @if (selectedLead(); as lead) {
+      <aside class="lead-detail">
+        <div class="lead-detail__header">
+          <h2>{{ lead.name }}</h2>
+          <button type="button" class="close-btn" (click)="closeDetail()">×</button>
+        </div>
+
+        <div class="lead-detail__meta">
+          <div><strong>Email:</strong> <a [href]="'mailto:' + lead.email">{{ lead.email }}</a></div>
+          @if (lead.phone) {
+            <div><strong>Phone:</strong> <a [href]="'tel:' + lead.phone">{{ lead.phone }}</a></div>
+          }
+          <div><strong>Source:</strong> {{ lead.source }} page</div>
+          <div><strong>Submitted:</strong> {{ formatDate(lead.createdAt) }}</div>
+        </div>
+
+        <div class="lead-detail__project">
+          <h3>Project Details</h3>
+          <p>{{ lead.projectDetails }}</p>
+        </div>
+
+        <div class="lead-detail__status">
+          <label>Status</label>
+          <select [value]="lead.status" (change)="updateStatus($any($event.target).value)">
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+
+        <div class="lead-detail__notes">
+          <label>Admin Notes / Response</label>
+          <textarea
+            [value]="notesDraft()"
+            (input)="notesDraft.set($any($event.target).value)"
+            rows="4"
+            placeholder="Add notes about your response..."
+          ></textarea>
+          <button type="button" class="btn btn--primary btn--sm" (click)="saveNotes()">Save Notes</button>
+        </div>
+
+        <button type="button" class="btn btn--danger btn--sm" (click)="deleteLead(lead.id)">Delete Lead</button>
+      </aside>
+    }
+  </div>
+</div>

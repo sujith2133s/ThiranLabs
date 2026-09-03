@@ -1,0 +1,74 @@
+.save-toast {
+  background: var(--color-success-light);
+  color: var(--color-success);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.content-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.content-tabs button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.content-tabs button:hover {
+  background: var(--color-bg);
+}
+
+.content-tabs button.active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.edit-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.edit-form--inline {
+  margin-bottom: 0;
+}
+
+.admin-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.admin-section p {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 1rem;
+}
+
+.admin-section--danger {
+  border-color: #fecaca;
+}

@@ -1,0 +1,76 @@
+<div class="admin-page">
+  <div class="admin-page__header admin-page__header--row">
+    <div>
+      <h1>Services Management</h1>
+      <p>Add, edit, and reorder the services displayed on your website.</p>
+    </div>
+    <button type="button" class="btn btn--primary" (click)="startCreate()">+ Add Service</button>
+  </div>
+
+  @if (isCreating() || editing()) {
+    <form class="edit-form" [formGroup]="form" (ngSubmit)="save()">
+      <h2>{{ editing() ? 'Edit Service' : 'New Service' }}</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" formControlName="title" />
+        </div>
+        <div class="form-group">
+          <label>Icon</label>
+          <select formControlName="icon">
+            @for (opt of iconOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea formControlName="description" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Features (one per line)</label>
+        <textarea
+          [value]="featuresText()"
+          (input)="featuresText.set($any($event.target).value)"
+          rows="4"
+          placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+        ></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn--primary">{{ editing() ? 'Update' : 'Create' }} Service</button>
+        <button type="button" class="btn btn--outline" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+  }
+
+  <div class="services-admin-list">
+    @for (service of services(); track service.id; let i = $index) {
+      <div class="service-admin-item">
+        <div class="service-admin-item__order">
+          <button type="button" [disabled]="i === 0" (click)="moveService(service.id, 'up')">↑</button>
+          <button type="button" [disabled]="i === services().length - 1" (click)="moveService(service.id, 'down')">↓</button>
+        </div>
+        <div class="service-admin-item__content">
+          <strong>{{ service.title }}</strong>
+          <p>{{ service.description }}</p>
+          <div class="service-admin-item__tags">
+            @for (f of service.features; track f) {
+              <span>{{ f }}</span>
+            }
+          </div>
+        </div>
+        <div class="service-admin-item__actions">
+          <button type="button" class="btn btn--outline btn--sm" (click)="startEdit(service)">Edit</button>
+          <button type="button" class="btn btn--danger btn--sm" (click)="deleteService(service.id)">Delete</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="admin-section admin-section--danger" style="margin-top: 2rem;">
+    <h2>Reset Services</h2>
+    <p>Restore all services to default values.</p>
+    <button type="button" class="btn btn--danger" (click)="resetServices()">Reset to Defaults</button>
+  </div>
+</div>

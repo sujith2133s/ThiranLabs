@@ -1,0 +1,40 @@
+<section class="page-hero">
+  <app-scene-3d variant="subtle" />
+  <div class="container">
+    <h1 appScrollReveal>{{ headline() }}</h1>
+    <p class="page-hero__intro" [delay]="100" appScrollReveal>{{ intro() }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="services-list">
+      @for (service of services(); track service.id; let i = $index) {
+        <div class="service-item card-3d" appTilt3d [delay]="i * 120" variant="up" appScrollReveal>
+          <div class="service-item__header">
+            <span class="service-item__icon">{{ getIcon(service.icon) }}</span>
+            <div>
+              <h2>{{ service.title }}</h2>
+              <p>{{ service.description }}</p>
+            </div>
+          </div>
+          <ul class="service-item__features">
+            @for (feature of service.features; track feature) {
+              <li>{{ feature }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <div class="services-cta" appScrollReveal>
+      <p>Not sure which service fits your needs?</p>
+      <a routerLink="/contact" class="btn btn--primary">Get a Personalized Recommendation</a>
+    </div>
+  </div>
+</section>
+
+<app-cta-banner
+  headline="Ready to Get Started?"
+  subtext="Share your project details and receive a custom quote within 24 hours."
+  buttonText="Request a Quote"
+/>

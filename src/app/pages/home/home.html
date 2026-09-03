@@ -1,0 +1,108 @@
+<!-- Hero Section -->
+<section class="hero">
+  <app-scene-3d variant="hero" />
+  <div class="container hero__grid">
+    <div class="hero__content" [delay]="0" appScrollReveal>
+      <span class="badge badge--3d">Freelance Web Design Studio</span>
+      <h1>{{ hero().headline }}</h1>
+      <p class="hero__sub">{{ hero().subheadline }}</p>
+      <div class="hero__actions">
+        <a routerLink="/contact" class="btn btn--primary btn--lg">{{ hero().ctaText }}</a>
+        <a routerLink="/services" class="btn btn--outline btn--lg">View Services</a>
+      </div>
+    </div>
+    <div class="hero__form" [delay]="150" appScrollReveal>
+      <div class="hero__form-card" appTilt3d [intensity]="10">
+        <app-lead-form source="home" [compact]="true" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Preview -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header" appScrollReveal>
+      <h2>What We Do Best</h2>
+      <p>Comprehensive web design services to help your business thrive online.</p>
+    </div>
+    <div class="services-grid">
+      @for (service of services().slice(0, 3); track service.id; let i = $index) {
+        <div class="service-card card-3d" appTilt3d [delay]="i * 100" appScrollReveal>
+          <div class="service-card__icon">{{ getIcon(service.icon) }}</div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+      }
+    </div>
+    <div class="section__footer" [delay]="200" appScrollReveal>
+      <a routerLink="/services" class="btn btn--outline">Explore All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section">
+  <div class="container">
+    <div class="section__header" appScrollReveal>
+      <h2>Why ThiranLabs?</h2>
+      <p>A partner who cares about your success as much as you do.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature card-3d" appTilt3d appScrollReveal>
+        <div class="feature__icon">◆</div>
+        <h3>Personal Attention</h3>
+        <p>Work directly with your designer—no middlemen, no miscommunication.</p>
+      </div>
+      <div class="feature card-3d" appTilt3d [delay]="80" appScrollReveal>
+        <div class="feature__icon">◆</div>
+        <h3>Modern Technology</h3>
+        <p>Built with the latest frameworks for speed, security, and scalability.</p>
+      </div>
+      <div class="feature card-3d" appTilt3d [delay]="160" appScrollReveal>
+        <div class="feature__icon">◆</div>
+        <h3>Transparent Process</h3>
+        <p>Clear timelines, regular updates, and honest pricing from day one.</p>
+      </div>
+      <div class="feature card-3d" appTilt3d [delay]="240" appScrollReveal>
+        <div class="feature__icon">◆</div>
+        <h3>Results Driven</h3>
+        <p>Every design choice is made with your business goals in mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header" appScrollReveal>
+      <h2>Our Process</h2>
+      <p>From first conversation to launch day, we keep things simple and collaborative.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step card-3d" appTilt3d appScrollReveal>
+        <span class="process-step__num">01</span>
+        <h3>Discovery</h3>
+        <p>We learn about your brand, goals, and audience to shape the perfect strategy.</p>
+      </div>
+      <div class="process-step card-3d" appTilt3d [delay]="100" appScrollReveal>
+        <span class="process-step__num">02</span>
+        <h3>Design</h3>
+        <p>Wireframes and visual designs bring your vision to life with your feedback at every step.</p>
+      </div>
+      <div class="process-step card-3d" appTilt3d [delay]="200" appScrollReveal>
+        <span class="process-step__num">03</span>
+        <h3>Develop</h3>
+        <p>Clean, responsive code transforms designs into a fast, functional website.</p>
+      </div>
+      <div class="process-step card-3d" appTilt3d [delay]="300" appScrollReveal>
+        <span class="process-step__num">04</span>
+        <h3>Launch</h3>
+        <p>We deploy, test, and support your site so you can focus on growing your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-cta-banner />

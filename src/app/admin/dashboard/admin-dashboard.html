@@ -1,0 +1,75 @@
+<div class="admin-page">
+  <div class="admin-page__header">
+    <h1>Dashboard</h1>
+    <p>Welcome back. Here's an overview of your website activity.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-card__label">Total Leads</span>
+      <span class="stat-card__value">{{ leads().length }}</span>
+    </div>
+    <div class="stat-card stat-card--highlight">
+      <span class="stat-card__label">New Leads</span>
+      <span class="stat-card__value">{{ newLeadCount() }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Active Services</span>
+      <span class="stat-card__value">{{ serviceCount().length }}</span>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Recent Leads</h2>
+        <a routerLink="/admin/leads" class="panel__link">View All →</a>
+      </div>
+      @if (recentLeads().length === 0) {
+        <p class="panel__empty">No leads yet. They'll appear here when visitors submit the contact form.</p>
+      } @else {
+        <div class="lead-list">
+          @for (lead of recentLeads(); track lead.id) {
+            <div class="lead-row">
+              <div class="lead-row__info">
+                <strong>{{ lead.name }}</strong>
+                <span>{{ lead.email }}</span>
+              </div>
+              <span class="status-badge status-badge--{{ lead.status }}">{{ lead.status }}</span>
+              <span class="lead-row__date">{{ formatDate(lead.createdAt) }}</span>
+            </div>
+          }
+        </div>
+      }
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Quick Actions</h2>
+      </div>
+      <div class="quick-actions">
+        <a routerLink="/admin/content" class="quick-action">
+          <span>📝</span>
+          <div>
+            <strong>Edit Content</strong>
+            <span>Update headlines and page copy</span>
+          </div>
+        </a>
+        <a routerLink="/admin/services" class="quick-action">
+          <span>🛠️</span>
+          <div>
+            <strong>Manage Services</strong>
+            <span>Add or edit service offerings</span>
+          </div>
+        </a>
+        <a routerLink="/admin/leads" class="quick-action">
+          <span>📬</span>
+          <div>
+            <strong>View Leads</strong>
+            <span>Respond to client inquiries</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="admin">
+  <aside class="admin__sidebar">
+    <div class="admin__brand">
+      <span class="admin__logo">T</span>
+      <div>
+        <strong>ThiranLabs</strong>
+        <span>Admin Panel</span>
+      </div>
+    </div>
+
+    <nav class="admin__nav">
+      @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="admin__nav-link--active"
+          [routerLinkActiveOptions]="{ exact: item.exact }"
+          class="admin__nav-link"
+        >
+          <span>{{ item.icon }}</span>
+          {{ item.label }}
+          @if (item.path === '/admin/leads' && newLeadCount() > 0) {
+            <span class="badge">{{ newLeadCount() }}</span>
+          }
+        </a>
+      }
+    </nav>
+
+    <div class="admin__sidebar-footer">
+      <a routerLink="/" class="admin__view-site" target="_blank">View Site →</a>
+      <button type="button" class="admin__logout" (click)="logout()">Sign Out</button>
+    </div>
+  </aside>
+
+  <main class="admin__main">
+    <router-outlet />
+  </main>
+</div>

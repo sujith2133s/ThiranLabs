@@ -1,0 +1,37 @@
+<header class="header">
+  <div class="container header__inner">
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <span class="logo__mark">T</span>
+      <span class="logo__text">ThiranLabs</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation menu"
+      (click)="toggleMenu()"
+    >
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
+
+    <nav class="nav" [class.nav--open]="menuOpen">
+      @for (link of navLinks; track link.path) {
+        <a
+          class="nav__link"
+          [routerLink]="link.path"
+          routerLinkActive="nav__link--active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+          (click)="closeMenu()"
+        >
+          {{ link.label }}
+        </a>
+      }
+      <a routerLink="/contact" class="btn btn--primary btn--sm nav__cta" (click)="closeMenu()">
+        Get a Quote
+      </a>
+    </nav>
+  </div>
+</header>

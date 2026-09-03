@@ -1,0 +1,53 @@
+<section class="page-hero">
+  <app-scene-3d variant="subtle" />
+  <div class="container">
+    <h1 appScrollReveal>{{ contact().headline }}</h1>
+    <p class="page-hero__intro" [delay]="100" appScrollReveal>{{ contact().intro }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-info" appScrollReveal>
+      <h2>Contact Information</h2>
+      <p>Prefer to reach out directly? We're here and happy to help.</p>
+
+      <div class="contact-details">
+        <div class="contact-detail card-3d" appTilt3d [intensity]="8">
+          <span class="contact-detail__label">Email</span>
+          <a [href]="'mailto:' + contact().email">{{ contact().email }}</a>
+        </div>
+        <div class="contact-detail card-3d" appTilt3d [intensity]="8">
+          <span class="contact-detail__label">Phone (Enquiry)</span>
+          <a [href]="'tel:' + contact().phone">{{ contact().phone }}</a>
+        </div>
+        <div class="contact-detail contact-detail--whatsapp card-3d" appTilt3d [intensity]="8">
+          <span class="contact-detail__label">Phone (WhatsApp)</span>
+          <a [href]="whatsappUrl()" target="_blank" rel="noopener noreferrer">{{ contact().whatsapp }}</a>
+        </div>
+        <div class="contact-detail card-3d" appTilt3d [intensity]="8">
+          <span class="contact-detail__label">Location</span>
+          <span>{{ contact().location }}</span>
+        </div>
+        <div class="contact-detail card-3d" appTilt3d [intensity]="8">
+          <span class="contact-detail__label">Hours</span>
+          <span>{{ contact().hours }}</span>
+        </div>
+      </div>
+
+      <div class="contact-note">
+        <strong>Response Time:</strong> We typically respond to all inquiries within 24 hours on business days.
+      </div>
+    </div>
+
+    <div class="contact-form" appScrollReveal [delay]="150">
+      <div class="contact-form__card" appTilt3d [intensity]="8">
+        <app-lead-form
+          source="contact"
+          title="Send Us a Message"
+          subtitle="Fill out the form below and we'll get back to you with a personalized quote."
+        />
+      </div>
+    </div>
+  </div>
+</section>

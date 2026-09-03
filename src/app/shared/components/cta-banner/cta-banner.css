@@ -1,0 +1,77 @@
+.cta-banner {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-maroon-deep) 0%, var(--color-maroon) 50%, var(--color-maroon-mid) 100%);
+  padding: 5rem 0;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Shimmer radial overlays */
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 80% at 15% 50%, rgba(255,255,255,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 85% 50%, rgba(201, 147, 58, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Spinning decorative ring */
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -60px;
+  top: -60px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  animation: cta-ring-spin 22s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes cta-ring-spin {
+  from { transform: rotateX(60deg) rotateZ(0deg); }
+  to   { transform: rotateX(60deg) rotateZ(360deg); }
+}
+
+.cta-banner__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.cta-banner__content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 3vw, 2.125rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  -webkit-text-fill-color: #ffffff;
+  background: none;
+}
+
+.cta-banner__content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.0625rem;
+  max-width: 520px;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .cta-banner__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-banner__content p { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-banner::after { animation: none; }
+}
