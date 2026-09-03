@@ -48,7 +48,7 @@
 /* Colored left strip per card */
 .contact-detail:nth-child(1)::before { content: '✉'; background: var(--color-maroon); }
 .contact-detail:nth-child(2)::before { content: '☎'; background: linear-gradient(180deg, var(--color-maroon), var(--color-gold)); }
-.contact-detail--whatsapp::before { content: '💬'; background: linear-gradient(180deg, #25d366, #128c7e); }
+.contact-detail--whatsapp::before { content: '💬'; background: linear-gradient(180deg, var(--color-gold), var(--color-text-muted)); }
 .contact-detail:nth-child(4)::before { content: '📍'; background: var(--color-gold); }
 .contact-detail:nth-child(5)::before { content: '🕐'; background: var(--color-maroon-dark); }
 
