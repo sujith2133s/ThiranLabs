@@ -47,9 +47,9 @@ const DEFAULT_CONTENT: SiteContent = {
     headline: 'Let\'s Start Your Project',
     intro:
       'Ready to bring your vision to life? Share your project details and we\'ll get back to you within 24 hours with a personalized quote.',
-    email: 'hello@thiranlabs.com',
-    phone: '+1 (555) 123-4567',
-    whatsapp: '+1 (555) 987-6543',
+    email: 'thiranlabs.co@gmail.com',
+    phone: '+91 9894155530',
+    whatsapp: ' +91 9994738638',
     location: 'Remote · Worldwide',
     hours: 'Mon–Fri, 9am–6pm EST',
   },
